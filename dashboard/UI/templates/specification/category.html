@@ -1,0 +1,138 @@
+{% extends 'commons/base.html' %}
+{% load static %}
+
+{% block css_link %}
+{% endblock %}
+
+{% block custom_style %}
+{% endblock %}
+
+
+{% block body %}
+<div class="content-wrapper">
+
+  <section class="content-header">
+    <div class="container-fluid">
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        
+        <div class="col-md-6">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Add Category</h3>
+            </div>
+            <form method="post" action="">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control"  name="name" placeholder="New Category Name">
+                  </div>
+                  <div class="form-group">
+                    <label>Priority No</label>
+                    <input type="number" class="form-control" name="priority_no" placeholder="Priority Number">
+                  </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-info float-right">Submit</button>
+              </div>
+            </form>
+          </div>
+          
+
+        </div>
+        <div class="col-md-6">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">List Category</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Priority</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for category in categories %}
+                  <tr>
+                    <td>1</td>
+                    <td>{{category.name}}</td>
+                    <td>{{category.priority}}</td>
+                    <td class="text-right py-0 align-middle">
+                      <div class="btn-group btn-group-sm">
+                      <a href="{% url 'edit_category' category.id %}" class="btn btn-secondary"><i class="fas fa-edit"></i></a>
+                      <a href="{% url 'delete_category' category.id %}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                      </div>
+                      </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          
+          </div>  
+      </div>
+        
+      
+      </div>
+    </div>
+  </section>
+</div>
+
+{% block js_scripts %}
+<script src="{% static 'plugins/bs-custom-file-input/bs-custom-file-input.min.js' %}"></script>
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+
+
+{% endblock %}
+
+{% block custom_scripts %}
+<script>
+  $(function () {
+    bsCustomFileInput.init();
+  });
+  </script>
+  <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+{% endblock %}
+
+
+
+{% endblock %}
+

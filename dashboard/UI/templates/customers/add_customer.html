@@ -1,0 +1,83 @@
+{% extends 'commons/base.html' %}
+{% load static %}
+
+{% block css_link %}
+{% endblock %}
+
+{% block custom_style %}
+{% endblock %}
+
+
+{% block body %}
+<div class="content-wrapper">
+
+  <section class="content-header">
+    <div class="container-fluid">
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        
+        <div class="col-md-12">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Quick Example</h3>
+            </div>
+            <form>
+              <div class="card-body">
+               <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      </div>
+                </div>
+               </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-info">Submit</button>
+              </div>
+            </form>
+          </div>
+          
+
+        </div>
+        
+      
+      </div>
+    </div>
+  </section>
+</div>
+
+{% block js_scripts %}
+<script src="{% static 'plugins/bs-custom-file-input/bs-custom-file-input.min.js' %}"></script>
+{% endblock %}
+
+{% block custom_scripts %}
+<script>
+  $(function () {
+    bsCustomFileInput.init();
+  });
+  </script>
+{% endblock %}
+
+
+
+{% endblock %}
+

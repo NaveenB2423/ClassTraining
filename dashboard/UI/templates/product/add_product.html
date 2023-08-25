@@ -1,0 +1,118 @@
+{% extends 'commons/base.html' %}
+{% load static %}
+
+{% block css_link %}
+{% endblock %}
+
+{% block custom_style %}
+{% endblock %}
+
+
+{% block body %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+   
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Quick Example</h3>
+            </div>
+            <form method="post" action="">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Enter Product Name">
+                    </div>
+                    <div class="form-group">
+                      <label>Price</label>
+                      <input type="text" class="form-control" name="price" placeholder="Enter Price">
+                    </div>
+                    <div class="form-group">
+                      <label>Category</label>
+                      <select class="form-control" name="category">
+                        <option value="">Select</option>
+                        {% for category in categories %}
+                        <option value='{{category.id}}'>{{category.name}}</option>
+                        {% endfor %}
+                      </select>
+                      </div>
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
+                    </div>
+                    
+                    
+                  </div>
+                  <div class="col-6">
+                    <!-- <div class="form-group">
+                      <label for="exampleInputFile">File input</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                      </div>
+                    
+                    </div> -->
+                  
+                    <div class="form-group">
+                      <label>Color</label>
+                      <select multiple class="form-control" name="color">
+                        {% for color in colors %}
+                        <option value='{{color.id}}'>{{color.name}}</option>
+                          {% endfor %}
+                     
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Size</label>
+                      <select multiple class="form-control" name="size">
+                        {% for size in sizes %}
+                        <option value="{{size.id}}">{{size.name}}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-info float-right">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+      
+      </div>
+    </div>
+  </section>
+</div>
+
+{% block js_scripts %}
+<!-- bs-custom-file-input -->
+<script src="{% static 'plugins/bs-custom-file-input/bs-custom-file-input.min.js' %}"></script>
+{% endblock %}
+
+{% block custom_scripts %}
+<script>
+  $(function () {
+    bsCustomFileInput.init();
+  });
+  </script>
+{% endblock %}
+
+
+
+{% endblock %}
+

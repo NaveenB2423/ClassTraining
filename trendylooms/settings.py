@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'domain',
     "dashboard.UI",
+    "dashboard.orders",
 ]
 
 MIDDLEWARE = [

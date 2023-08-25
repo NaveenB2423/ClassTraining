@@ -67,6 +67,7 @@ class UserAddrsss(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, null=False)  
+    priority = models.SmallIntegerField(null=True)
     status = models.SmallIntegerField(default=1, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
@@ -79,13 +80,15 @@ class SubCategory(models.Model):
     updated_on = models.DateTimeField(auto_now=True, null=True)
 
 class Color(models.Model):
-    name = models.CharField(max_length=100, null=False)  
+    name = models.CharField(max_length=100, null=False)
+    priority = models.SmallIntegerField(null=True)  
     status = models.SmallIntegerField(default=1, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
 
 class Size(models.Model):
     name = models.CharField(max_length=100, null=False) 
+    priority = models.SmallIntegerField(null=True)
     status = models.SmallIntegerField(default=1, null=True) 
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
@@ -94,21 +97,19 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null=False)
     description = models.CharField(max_length=1000)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    price = models.FloatField(null=False)
+    image = models.ImageField(
+        upload_to=settings.PRODUCT_IMAGE_UPLOAD_PATH, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
     status = models.SmallIntegerField(default=1, null=True)
 
-    
 
-class ProductSKU(models.Model):
+class ProductVariant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    price = models.FloatField(null=False)
-    image = models.ImageField(
-        upload_to=settings.PRODUCT_IMAGE_UPLOAD_PATH, null=True)
-    qty = models.SmallIntegerField(null=True)
-    status = models.SmallIntegerField(default=1, null=True)
+    status = models.SmallIntegerField(null=True, default=1)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
 
@@ -118,7 +119,6 @@ class Order(models.Model):
     delivery_date = models.DateField(null=True)
     is_amount_paid = models.BooleanField(null=True)
     is_order_delivered = models.BooleanField(null=True, default=False)
-    is_order_closed = models.BooleanField(null=True, default=False)
     is_order_cancaled = models.BooleanField(null=True, default=False)
     status = models.SmallIntegerField(null=True)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -126,7 +126,7 @@ class Order(models.Model):
 
 class OrderItems(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
-    productsku = models.ForeignKey(ProductSKU, on_delete=models.CASCADE)
+    variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
     qty = models.SmallIntegerField(null=True)
     sub_total = models.FloatField(null=True, default=0.0)
     status = models.SmallIntegerField(null=True, default=1)
@@ -136,7 +136,7 @@ class OrderItems(models.Model):
 
 
 class Cart(models.Model):
-    productsku = models.ForeignKey(ProductSKU, on_delete=models.CASCADE)
+    variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
     qty = models.SmallIntegerField(null=True)
     status = models.SmallIntegerField(default=1, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
@@ -156,9 +156,6 @@ class TransactionDetails(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     paymtent_status = models.CharField(max_length=50, null=True, default="Paid")
-    
-
-
     
 
 
