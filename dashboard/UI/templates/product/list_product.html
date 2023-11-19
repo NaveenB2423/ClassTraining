@@ -10,6 +10,11 @@
 {% endblock %}
 
 {% block custom_style %}
+<style>
+  .checked {
+    color: orange;
+  }
+</style>
 {% endblock %}
 
 
@@ -44,16 +49,22 @@
                 <tr>
                   <th>Name</th>
                   <th>Price</th>
+                  <th>Discount Price</th>
+                  <th>Category</th>
                   <th>Size</th>
                   <th>Color</th>
+                  <th>Image</th>
+                  <th>Home Screen</th>
                   <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody">
                   {% for product in products %}
                 <tr>
                   <td>{{product.name}}</td>
                   <td>{{product.price}}</td>
+                  <td>{{product.discount_price}}</td>
+                  <td>{{product.category.name}}</td>
                   <td>
                     {% for size in product.productvariant_set.all|distinct_sizes %}
                         {{ size }}
@@ -63,6 +74,22 @@
                       {{color}}
                       {% endfor %}
                   </td>
+                  {% if product.image %}
+                  <td>
+                    <img src="{{product.image.url}}" style="width: 50px;" />
+                  </td>
+                  {% else %}
+                  <td>
+                    
+                  </td>
+                  {% endif %}
+                 <td>
+                  {% if product.ismain == 1 %}
+                  <span  id="fav-{{ product.id }}" data-sid="{{ product.id}}" data-vid="" class="fa fa-star checked"></span>
+                  {% else %}
+                  <span id="fav-{{ product.id }}" data-sid="{{ product.id}}" data-vid="1" class="fa fa-star"></span>
+                  {% endif %}
+                 </td>
                   <td class="text-right py-0 align-middle">
                     <div class="btn-group btn-group-sm">
                     <a href="{% url 'edit_product' product.id %}" class="btn btn-secondary"><i class="fas fa-edit"></i></a>
@@ -126,6 +153,33 @@
       "responsive": true,
     });
   });
+
+
+
+  $("#tbody").on("click", ".fa-star", function(){
+let id = $(this).attr("data-sid");
+let data_id = $(this).attr("data-vid");
+
+mydata = {id:id, data_id: data_id, csrfmiddlewaretoken: '{{ csrf_token }}' }
+$.ajax({
+        url: "{% url 'update_home_item' %}",
+        method: "POST", 
+        data: mydata,
+        success: function(data){
+        console.log(data);
+        if (data_id == 1){
+            $("#fav-"+id).addClass("checked");
+            $("#fav-"+id).attr("data-vid","");
+        }
+        else{
+            $("#fav-"+id).removeClass("checked");
+            $("#fav-"+id).attr("data-vid","1");
+        }
+        
+
+        }
+        })
+});
 </script>
 {% endblock %}
 

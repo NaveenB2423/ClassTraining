@@ -14,7 +14,7 @@ class MyUserManager(BaseUserManager):
             raise ValueError('Users must have an Mobile No')
 
         user = self.model(
-            email=self.normalize_email(mobile_no),
+            mobile_no=mobile_no,
 
         )
 
@@ -98,11 +98,13 @@ class Product(models.Model):
     description = models.CharField(max_length=1000)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.FloatField(null=False)
+    discount_price = models.FloatField(null=False)
     image = models.ImageField(
         upload_to=settings.PRODUCT_IMAGE_UPLOAD_PATH, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
     status = models.SmallIntegerField(default=1, null=True)
+    ismain = models.SmallIntegerField(default=0, null=True)
 
 
 class ProductVariant(models.Model):
@@ -136,6 +138,7 @@ class OrderItems(models.Model):
 
 
 class Cart(models.Model):
+    made_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=False)
     variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
     qty = models.SmallIntegerField(null=True)
     status = models.SmallIntegerField(default=1, null=True)

@@ -4,7 +4,8 @@ from . import product
 from . import views 
 
 urlpatterns = [
-    path('',views.dashboard, name='dashboard'),
+    path('',views.admin_login, name='admin_login'),
+    path('dashboard',views.dashboard, name='dashboard'),
     path('category', specification.category, name='category'),
     path('edit-category/<int:id>',specification.edit_category, name='edit_category'),
     path('delete-category/<int:id>',specification.delete_category, name='delete_category'),
@@ -18,5 +19,7 @@ urlpatterns = [
     path('list-products', product.list_product, name='list_product'),
     path('edit-product/<int:id>',product.edit_product, name='edit_product'),
     path('delete-product/<int:id>',product.delete_product, name='delete_product'),
+    path('update-home-item',product.update_home_item,name="update_home_item"),
+    path('ecommerce',product.ecommerce, name='ecommerce'),
     
 ]

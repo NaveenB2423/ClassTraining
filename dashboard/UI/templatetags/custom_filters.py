@@ -48,6 +48,3 @@ def check_sizes(product, size ):
     else:
         return False
     
-
-  
-
