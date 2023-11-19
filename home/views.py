@@ -20,9 +20,27 @@ def index(request):
         cart.variant=productVariant
         cart.qty = qty
         cart.save()
-        
-    return render(request,'home/product.html',{'product':product})
+    return render(request, 'home/index.html')   
+    return render(request,'home/index.html',{'product':product})
 
+def about_us(request):
+    return render(request,'home/about.html')
+def contact_us(request):
+    return render(request,'home/contact.html')
+def customer_login(request):
+    return render(request,'home/login.html')
+def customer_signup(request):
+    return render(request,'home/signup.html')
+def products(request):
+    return render(request,'home/product.html')
+def product_details(request):
+    return render(request,'home/product-details.html')
+def shopping_cart(request):
+    return render(request,'home/shopping-cart.html')
+def blog(request):
+    return render(request,'home/blog.html')
+def blog_details(request):
+    return render(request,'home/blog-details.html')
 
 def cart(request):
     carts = Cart.objects.filter(made_by=request.user)
