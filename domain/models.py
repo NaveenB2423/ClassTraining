@@ -65,6 +65,20 @@ class UserAddrsss(models.Model):
          
     
 
+class MainMenus(models.Model):
+    name = models.CharField(max_length=100, null=False)  
+    priority = models.SmallIntegerField(null=True)
+    status = models.SmallIntegerField(default=1, null=True)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    updated_on = models.DateTimeField(auto_now=True, null=True)
+    
+class SubMenus(models.Model):
+    category = models.ForeignKey(MainMenus, on_delete=models.CASCADE, null=False)
+    name = models.CharField(max_length=100, null=False)  
+    status = models.SmallIntegerField(default=1, null=True)
+    created_on = models.DateTimeField(auto_now_add=True, null=True)
+    updated_on = models.DateTimeField(auto_now=True, null=True)
+
 class Category(models.Model):
     name = models.CharField(max_length=100, null=False)  
     priority = models.SmallIntegerField(null=True)

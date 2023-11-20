@@ -47,7 +47,7 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+          <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{% url 'category' %}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -68,6 +68,7 @@
               </li>
             </ul>
           </li>
+          
          
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -92,6 +93,46 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+                <p>
+                    Categories
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                
+           
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                    Menus
+                    <i class="right fas fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <li class="nav-item">
+                            <a href="{% url 'create_main_menu' %}" class="nav-link">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Main Menu</p>
+                            </a>
+                        </li>
+                                                     
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Sub Menus</p>
+                        </a>
+                    </li>
+               
+                   
+                    </ul>
+                    </li>
+        
+            </ul>
+        </li>
 
          
         </ul>

@@ -2,10 +2,23 @@ from django.urls import path
 from . import specification
 from . import product
 from . import views 
+from . import category
 
 urlpatterns = [
     path('',views.admin_login, name='admin_login'),
     path('dashboard',views.dashboard, name='dashboard'),
+    path('create-main-menu', category.create_main_menu, name='create_main_menu'),
+    path('edit-main-menu/<int:id>',category.edit_main_menu, name='edit_main_menu'),
+    path('delete-main-menu/<int:id>',category.delete_main_menu, name='delete_main_menu'),
+
+
+
+
+
+
+
+
+
     path('category', specification.category, name='category'),
     path('edit-category/<int:id>',specification.edit_category, name='edit_category'),
     path('delete-category/<int:id>',specification.delete_category, name='delete_category'),
