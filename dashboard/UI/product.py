@@ -10,7 +10,8 @@ def add_product(request):
     if request.method == "POST":
         product.name= request.POST.get('name','').strip()
         product.description = request.POST.get('description','').strip()
-        product.category_id = request.POST.get('category')
+        product.main_menu_id = request.POST.get('category')
+        #product.sub_menu_id = request.POST.get('sub_category')
         product.price = request.POST.get('price','').strip()
         product.discount_price = request.POST.get('discount_price','').strip()
         product.image = request.FILES.get('itemImage', '')
@@ -42,7 +43,7 @@ def edit_product(request,id):
     if request.method == "POST":
         product.name= request.POST.get('name','').strip()
         product.description = request.POST.get('description','').strip()
-        product.category_id = request.POST.get('category')
+        product.main_menu_id = request.POST.get('category')
         product.price = request.POST.get('price','').strip()
         product.discount_price = request.POST.get('discount_price','').strip()
         if request.FILES.get('itemImage'):

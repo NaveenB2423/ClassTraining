@@ -59,15 +59,16 @@
             </div>
 
             <div class="size-210 w-full-md m-t-0 m-b-40">
-                <form class="p-lr-40 p-tb-35" id='formbox'>
+                <form class="p-lr-40 p-tb-35" id='formbox' action="" method="post">
+                    {% csrf_token %}
                     <h1 class="p-b-30 text-white text-center" id="loginTxt">Login</h1>
                     <div class="form-group text-white">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label >Mobile No</label>
+                        <input type="text" class="form-control"   name="mobile" placeholder="Enter Mobile NO">
                     </div>
                     <div class="form-group text-white">
-                        <label for "exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                     <div class="form-group form-check text-white" style="display: flex;">
                         <label class="form-check-label m-r-20 m-t-0" for="exampleCheck1">Forget Password</label>

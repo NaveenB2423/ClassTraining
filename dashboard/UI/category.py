@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from domain.models import MainMenus, SubMenus
+from domain.models import MainMenus, SubMenus, Color, Size
 
 
 
@@ -30,3 +30,78 @@ def delete_main_menu(request, id):
     return redirect(create_main_menu)
     
 #End
+
+
+
+
+# Sub Menu
+def create_sub_menu(request):
+    sub_menus = SubMenus.objects.filter(status=1).all()
+    main_menus = MainMenus.objects.filter(status=1).all()
+    if request.method == 'POST':
+        sub_menu = SubMenus()
+        sub_menu.main_menu_id = request.POST.get('main_menu')
+        sub_menu.name = request.POST.get('name','').strip()
+        sub_menu.save()
+    return render(request, 'admin_page/category/menus/sub_menus/add_sub_menu.html',{'sub_menus':sub_menus,'main_menus':main_menus})
+
+def edit_sub_menu(request,id):
+    sub_menus = SubMenus.objects.filter(status=1).all()
+    main_menus = MainMenus.objects.filter(status=1).all()
+    selected_sub_menu = SubMenus.objects.get(id=id)
+    if request.method == 'POST':
+        selected_sub_menu.main_menu_id = request.POST.get('main_menu')
+        selected_sub_menu.name = request.POST.get('name','').strip()
+        selected_sub_menu.save()
+        return redirect(create_sub_menu)
+    return render(request, 'admin_page/category/menus/sub_menus/edit_sub_menu.html',{'sub_menus':sub_menus,'main_menus':main_menus,'selected_sub_menu':selected_sub_menu})
+
+    
+#End
+
+def add_color(request):
+    colors = Color.objects.filter(status=1).all()
+    if request.method == 'POST':
+        new_color = Color()
+        new_color.name = request.POST.get('name','').strip()
+        new_color.save()
+    return render(request, 'admin_page/category/color/add_color.html',{'colors':colors})
+
+def edit_color(request,id):
+    colors = Color.objects.filter(status=1).all()
+    selected_color = Color.objects.get(id=id)
+    if request.method == 'POST':
+        selected_color.name = request.POST.get('name','').strip()
+        selected_color.save()
+        return redirect(add_color)
+    return render(request, 'admin_page/category/color/edit_color.html',{'colors':colors,'selected_color':selected_color})
+
+def delete_color(request, id):
+    selected_color = Color.objects.get(id=id)
+    selected_color.status = 0
+    selected_color.save()
+    return redirect(add_color)
+    
+def add_size(request):
+    sizes = Size.objects.filter(status=1).all()
+    if request.method == 'POST':
+        new_size = Size()
+        new_size.name = request.POST.get('name','').strip()
+        new_size.save()
+    return render(request, 'admin_page/category/size/add_size.html',{'sizes':sizes})
+
+def edit_size(request,id):
+    sizes = Size.objects.filter(status=1).all()
+    selected_size = Size.objects.get(id=id)
+    if request.method == 'POST':
+        selected_size.name = request.POST.get('name','').strip()
+        selected_size.save()
+        return redirect(add_size)
+    return render(request, 'admin_page/category/size/add_size.html',{'sizes':sizes,'selected_size':selected_size})
+
+def delete_size(request, id):
+    selected_size = Size.objects.get(id=id)
+    selected_size.status = 0
+    selected_size.save()
+    return redirect(add_size)
+    

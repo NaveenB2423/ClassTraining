@@ -1,5 +1,6 @@
 {% extends 'home/commons/main.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
 
 
@@ -120,31 +121,31 @@
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="{% static 'home/images/product-detail-01.jpg' %}">
+								<div class="item-slick3" data-thumb="{{product.image.url}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="{% static 'home/images/product-detail-01.jpg' %}" alt="IMG-PRODUCT">
+										<img src="{{product.image.url}}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{product.image.url}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="{% static 'home/images/product-detail-02.jpg' %}">
+								<div class="item-slick3" data-thumb="{{product.image.url}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="{% static 'home/images/product-detail-02.jpg' %}" alt="IMG-PRODUCT">
+										<img src="{{product.image.url}}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{product.image.url}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="{% static 'home/images/product-detail-03.jpg' %}">
+								<div class="item-slick3" data-thumb="{{product.image.url}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="{% static 'home/images/product-detail-03.jpg' %}" alt="IMG-PRODUCT">
+										<img src="{{product.image.url}}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{product.image.url}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -169,37 +170,26 @@
 						</p>
 						
 						<!--  -->
+						<form method="post" action="">
+							{% csrf_token %}
+							<input type="text" value="{{product.id}}" name="product_id">
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
 									Size
 								</div>
-<!-- 
+
 								<div class="size-204 respon6-next">
 									<div class="rs1-select2 bor8 bg0">
-										<select class="js-select2" name="time">
+										<select class="js-select2" name="size">
 											<option>Choose an option</option>
-											<option>Size S</option>
-											<option>Size M</option>
-											<option>Size L</option>
-											<option>Size XL</option>
+											{% for size in product.productvariant_set.all|distinct_sizes %}
+											<option value="{{ size }}">{{ size }}</option>
+                   							 {% endfor %}
 										</select>
 										<div class="dropDownSelect2"></div>
 									</div>
-								</div> -->
-								
-								<div class="size-204 respon6-next">
-									<div class="sizes ">
-										<ul style="display: flex;">
-											<li>S</li>
-											<li>M</li>
-											<li>L</li>
-											<li>XL</li>
-											<li>XXL</li>
-										</ul>
-									</div>
 								</div>
-								
 							</div>
 
 							<div class="flex-w flex-r-m p-b-10">
@@ -208,12 +198,16 @@
 								</div>
 
 								<div class="size-204 respon6-next">
-									<div class="rs1-select2  bg0">
-										<button class="round-button" style="background-color: red;"></button>
-                                        <button class="round-button" style="background-color: blue;"></button>
-                                        <button class="round-button" style="background-color: green;"></button>
-                                        <button class="round-button" style="background-color: orange;"></button>
-                                        <button class="round-button" style="background-color: purple;"></button>
+									<div class="rs1-select2 bor8 bg0">
+										<select class="js-select2" name="color">
+											<option>Choose an option</option>
+											{% for color in product.productvariant_set.all|distinct_colors %}
+											<option value="{{ color }}">{{ color }}</option>
+                   							 {% endfor %}
+											
+											
+										</select>
+										<div class="dropDownSelect2"></div>
 									</div>
 								</div>
 							</div>
@@ -225,19 +219,20 @@
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
 								</div>
 							</div>	
 						</div>
+                    </form>
 
 						<!--  -->
 						<div class="flex-w flex-m p-l-100 p-t-40 respon7">

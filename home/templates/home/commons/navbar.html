@@ -39,54 +39,44 @@
                 </a>
 
                     <!-- Menu desktop -->
+                    
                     <div class="menu-desktop">
                         <ul class="main-menu">
-                            <li class="active-menu">
-                                <a href="index.html">Home</a>
+                            <li class="{% if current_url == 'index' %}active-menu{% endif %}">
+                                <a href="{% url 'index' %}">Home</a>
                             </li>
-                            <li>
+
+
+
+                              {% for menu in menus %}
+                              {% if menu.submenus_set.all %}
+                              <li>
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Women
+                                        {{menu.name}}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="product.html">OverSize T-Shirts</a>
-                                      <a class="dropdown-item" href="product.html">Kurti</a>
-                                      <a class="dropdown-item" href="product.html">Printed T-Shirts</a>
-                                      <a class="dropdown-item" href="product.html">Plain T-Shirts</a>
-                                    </div>
+                                        {% for sub_menu in menu.submenus_set.all %}
+                                          <a class="dropdown-item" href="">{{ sub_menu.name }}</a>
+                                        {% endfor %}
+                                      </div>
                                   </div>
-                              </li>
-                            <li>
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Men
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="#">Full Sleeve T-Shirt</a>
-                                      <a class="dropdown-item" href="#">Printed T-Shirts</a>
-                                      <a class="dropdown-item" href="#">Plain T-Shirts</a>
-                                      <a class="dropdown-item" href="#">Polos</a>
-                                    </div>
-                                  </div>
+                              </li> 
+                              {% else %}
+                              <li>
+                                <a href="{% url 'main_products' menu.name|slugify %}">{{menu.name}}</a>
                             </li>
+                            {%endif %}
 
-                            
-                            <!-- <li class="label1" data-label1="hot">
-                                <a href="shoping-cart.html">Cart</a>
-                            </li>
- -->
-                            <li>
-                                <a href="index.html#CustomDesign">Custom Design T-Shirt</a>
-                            </li>
+                              {% endfor %} 
 
-                            <li>
-                                <a href="index.html#Themes">Themes</a>
-                            </li>
 
-                            <li>
-                                <a href="index.html#Pillow">Pillow</a>
-                            </li>
+
+                              
+
+
+
+
                         </ul>
                     </div>	
 

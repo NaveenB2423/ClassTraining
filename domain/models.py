@@ -73,8 +73,8 @@ class MainMenus(models.Model):
     updated_on = models.DateTimeField(auto_now=True, null=True)
     
 class SubMenus(models.Model):
-    category = models.ForeignKey(MainMenus, on_delete=models.CASCADE, null=False)
-    name = models.CharField(max_length=100, null=False)  
+    main_menu = models.ForeignKey(MainMenus, on_delete=models.CASCADE, null=False)
+    name = models.CharField(max_length=100, null=False) 
     status = models.SmallIntegerField(default=1, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
@@ -95,14 +95,12 @@ class SubCategory(models.Model):
 
 class Color(models.Model):
     name = models.CharField(max_length=100, null=False)
-    priority = models.SmallIntegerField(null=True)  
     status = models.SmallIntegerField(default=1, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
 
 class Size(models.Model):
     name = models.CharField(max_length=100, null=False) 
-    priority = models.SmallIntegerField(null=True)
     status = models.SmallIntegerField(default=1, null=True) 
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
@@ -110,7 +108,8 @@ class Size(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=200, null=False)
     description = models.CharField(max_length=1000)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    main_menu = models.ForeignKey(MainMenus, on_delete=models.CASCADE)
+    sub_menu = models.ForeignKey(SubMenus, on_delete=models.CASCADE,null=True)
     price = models.FloatField(null=False)
     discount_price = models.FloatField(null=False)
     image = models.ImageField(
@@ -118,7 +117,7 @@ class Product(models.Model):
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
     status = models.SmallIntegerField(default=1, null=True)
-    ismain = models.SmallIntegerField(default=0, null=True)
+    is_favorite = models.SmallIntegerField(default=0, null=True)
 
 
 class ProductVariant(models.Model):

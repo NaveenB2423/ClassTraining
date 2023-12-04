@@ -64,7 +64,7 @@
                   <td>{{product.name}}</td>
                   <td>{{product.price}}</td>
                   <td>{{product.discount_price}}</td>
-                  <td>{{product.category.name}}</td>
+                  <td>{{product.main_menu.name}}</td>
                   <td>
                     {% for size in product.productvariant_set.all|distinct_sizes %}
                         {{ size }}
