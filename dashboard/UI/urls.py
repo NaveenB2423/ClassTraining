@@ -31,6 +31,7 @@ urlpatterns = [
     path('edit-category/<int:id>',specification.edit_category, name='edit_category'),
     path('delete-category/<int:id>',specification.delete_category, name='delete_category'),
     
+    path('get-sub-menus',product.get_sub_menus, name='get_sub_menus'),
     path('add-product', product.add_product, name='add_product'),
     path('list-products', product.list_product, name='list_product'),
     path('edit-product/<int:id>',product.edit_product, name='edit_product'),

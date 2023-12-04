@@ -32,9 +32,14 @@ def index(request):
 
 def main_products(request,menu):
     original_menu = menu.replace("-"," ")
-    menus = MainMenus.objects.filter(status=1).order_by('priority')
     products = Product.objects.filter(main_menu__name__iexact=original_menu)
-    return render(request,'home/selected-products.html',{'menus':menus,'current_url':'the boys','products':products}) 
+  
+    return render(request,'home/selected-products.html',{'current_url':menu,'products':products}) 
+def sub_products(request,main_menu,sub_menu):
+    original_menu = main_menu.replace("-"," ")
+    original_sub_menu = sub_menu.replace("-"," ")
+    products = Product.objects.filter(main_menu__name__iexact=original_menu,sub_menu__name__iexact=original_sub_menu)
+    return render(request,'home/selected-products.html',{'current_url':main_menu,'products':products}) 
 
 def about_us(request):
     return render(request,'home/about.html')
@@ -70,9 +75,9 @@ def customer_signup(request):
     return render(request,'home/signup.html')
 def products(request):
     return render(request,'home/product.html')
-def product_details(request):
-    print(request.user.id)
-    product = Product.objects.filter(status=1).last()
+def product_details(request,name):
+    original_name = name.replace("-"," ")
+    product = Product.objects.filter(name__iexact=original_name).last()
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
         size_name = request.POST.get('size')

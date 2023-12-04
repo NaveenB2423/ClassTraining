@@ -42,23 +42,27 @@
                       <label>Discount Price</label>
                       <input type="text" class="form-control" name="discount_price" placeholder="Enter Offer Price">
                     </div>
-                    <div class="form-group">
-                      <label>Category</label>
-                      <select class="form-control" name="category">
-                        <option value="">Select</option>
-                        {% for category in categories %}
-                        <option value='{{category.id}}'>{{category.name}}</option>
-                        {% endfor %}
-                      </select>
-                    </div>
+
+
+
+
+
+                  
+                  <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" id="category" name="category" required>
+                      <option value="">Select</option>
+                      {% for category in categories %}
+                      <option value='{{category.id}}'>{{category.name}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                 
                     <div class="form-group">
                       <label>Sub Category</label>
-                      <select class="form-control" name="category">
-                        <option value="">Select</option>
-                        {% for category in categories %}
-                        <option value='{{category.id}}'>{{category.name}}</option>
-                        {% endfor %}
-                      </select>
+                      <select class="form-control" name="subcategory" id="subcategory" disabled required>
+                        <option>Select</option>
+                        </select>
                     </div>
                     
                     
@@ -115,6 +119,50 @@
     bsCustomFileInput.init();
   });
   </script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+   $('#category').on('change', function (event) {
+        event.preventDefault();
+        let id = this.value;
+        if (this.value != '') {
+            mydata = { id: id, csrfmiddlewaretoken: '{{ csrf_token }}' }
+            $.ajax({
+                url: "{% url 'get_sub_menus' %}",
+                method: "POST",
+                data: mydata,
+                success: function (data) {
+                    console.log('check',data);
+
+                    if (data.values.length>0){
+                      $("#subcategory").removeAttr("disabled");
+                    $("#subcategory option").remove();
+                    $('#subcategory').append($('<option></option>').val("").html("Select"))
+                    $.each(data.values, function (i, p) {
+                        $('#subcategory').append($('<option></option>').val(p.id).html(p.name));
+                    });
+
+                    }
+                    else {
+            $("#subcategory").prop('disabled', 'disabled');
+            $("#subcategory option").remove();
+            $('#subcategory').append($('<option></option>').val("").html("Select"))
+        }
+                  
+                }
+            })
+
+        }
+
+        else {
+            $("#subcategory").prop('disabled', 'disabled');
+            $("#subcategory option").remove();
+            $('#subcategory').append($('<option></option>').val("").html("Select"))
+        }
+    });
+</script>
 {% endblock %}
 
 

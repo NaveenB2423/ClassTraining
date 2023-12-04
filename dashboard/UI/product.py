@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http.response import JsonResponse
-from domain.models import Category, Product, Size, Color, ProductVariant, Cart
+from domain.models import Category, Product, Size, Color, ProductVariant, Cart, SubMenus
 
 def add_product(request):
     categories = Category.objects.filter(status=1).all()
@@ -11,7 +11,8 @@ def add_product(request):
         product.name= request.POST.get('name','').strip()
         product.description = request.POST.get('description','').strip()
         product.main_menu_id = request.POST.get('category')
-        #product.sub_menu_id = request.POST.get('sub_category')
+        if request.POST.get('subcategory'):
+            product.sub_menu_id = request.POST.get('subcategory')
         product.price = request.POST.get('price','').strip()
         product.discount_price = request.POST.get('discount_price','').strip()
         product.image = request.FILES.get('itemImage', '')
@@ -101,3 +102,12 @@ def ecommerce(request):
         cart.save()
         
     return render(request,'product/e-commerce.html',{'product':product})
+
+
+
+def get_sub_menus(request):
+    if request.method == "POST":
+        id = request.POST.get('id','').strip()
+        sub_menus = SubMenus.objects.filter(main_menu_id=id).values()
+        return JsonResponse({"values":list(sub_menus)})
+    return JsonResponse({})
