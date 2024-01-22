@@ -31,8 +31,9 @@ def index(request):
     return render(request, 'home/index.html',{'menus':menus,'current_url':'index'})  
 
 def main_products(request,menu):
+    
     original_menu = menu.replace("-"," ")
-    products = Product.objects.filter(main_menu__name__iexact=original_menu)
+    products = Product.objects.filter(main_menu__name__iexact='tshirt')
   
     return render(request,'home/selected-products.html',{'current_url':menu,'products':products}) 
 def sub_products(request,main_menu,sub_menu):
