@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http.response import JsonResponse
 from domain.models import Category, Product, Size, Color, ProductVariant, Cart, SubMenus, MainMenus
+
 def add_product(request):
-    categories = MainMenus.objects.all()
+    categories = MainMenus.objects.filter(status=1).all()
     sizes = Size.objects.filter(status=1).all()
     colors = Color.objects.filter(status=1).all()
     product = Product()
