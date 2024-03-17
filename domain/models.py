@@ -155,6 +155,7 @@ class Cart(models.Model):
     variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
     qty = models.SmallIntegerField(null=True)
     status = models.SmallIntegerField(default=1, null=True)
+    price = models.FloatField(null=True, default=0.0)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
 

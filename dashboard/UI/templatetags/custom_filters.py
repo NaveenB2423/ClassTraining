@@ -19,11 +19,15 @@ def distinct_sizes(product_variants):
 def distinct_colors(product_variants):
     color_set = set()
     distinct_colors = []
+ 
+    
 
     for variant in product_variants:
-        if variant.size.name not in color_set and variant.status == 1:
+       
+        if variant.color.name not in color_set and variant.status == 1:
             color_set.add(variant.color.name)
             distinct_colors.append(variant.color.name)
+    print(distinct_colors)
     return distinct_colors
 
 

@@ -1,8 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import redirect, render, HttpResponse
 from domain.models import Product, ProductVariant, Cart, Color, Size
 from domain.models import MainMenus, SubMenus, User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Sum
 
 
 # Create your views here.
@@ -40,6 +41,7 @@ def sub_products(request,main_menu,sub_menu):
     original_menu = main_menu.replace("-"," ")
     original_sub_menu = sub_menu.replace("-"," ")
     products = Product.objects.filter(main_menu__name__iexact=original_menu,sub_menu__name__iexact=original_sub_menu)
+   
     return render(request,'home/selected-products.html',{'current_url':main_menu,'products':products}) 
 
 def about_us(request):
@@ -57,7 +59,7 @@ def customer_login(request):
         
         if user and user.is_active:
             login(request, user)
-            return HttpResponse("Logged in")
+            return redirect(index)
         else:
             return HttpResponse('failed')
 
@@ -72,7 +74,6 @@ def customer_signup(request):
        new_user.password = make_password(request.POST.get('password','').strip())
        new_user.is_password_set =1
        new_user.save()
-
     return render(request,'home/signup.html')
 def products(request):
     return render(request,'home/product.html')
@@ -93,11 +94,15 @@ def product_details(request,name):
         cart.made_by=request.user
         cart.variant=productVariant
         cart.qty = qty
+        cart.price=product.discount_price * float(qty)
         cart.save()
+    print(product.__dict__)
     return render(request,'home/product-details.html',{'product':product})
 def shopping_cart(request):
     carts = Cart.objects.filter(made_by=request.user)
-    return render(request,'home/shopping-cart.html',{'carts':carts})
+    total_amount = carts.aggregate(Sum('price'))['price__sum']
+    print(total_amount)
+    return render(request,'home/shopping-cart.html',{'carts':carts,'total_amount':total_amount})
 def blog(request):
     return render(request,'home/blog.html')
 def blog_details(request):
