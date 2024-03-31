@@ -1,0 +1,126 @@
+{% extends 'home/commons/main.html' %}
+{% load static %}
+{% block content %}
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+            Home
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+
+        <span class="stext-109 cl4">
+            Pay Cart
+        </span>
+    </div>
+</div>
+    
+<!-- Payment Page -->
+<form class="bg0 p-t-25 p-b-15">
+    <div class="container">
+        <div class="row">
+            <!-- Personal Information Accordion -->
+            <div class="col-lg-5 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--38 m-lr-0-xl">
+                    <h4 class="mtext-109 cl2 p-b-30">
+                        Personal Information
+                    </h4>
+                    <!-- Accordion -->
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <!-- Accordion Item 1 -->
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Full Name
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                    <input class="stext-104 cl3 plh4 size-117 bor13 p-lr-20 m-tb-5" type="text" name="full_name" placeholder="Enter Full Name">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Accordion Item 2 -->
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Email Address
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="card-body">
+                                    <input class="stext-104 cl3 plh4 size-117 bor13 p-lr-20 m-tb-5" type="email" name="email" placeholder="Enter Email Address">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Accordion Item 3 -->
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingThree">
+                                <h5 class="mb-0">
+                                    <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Address
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="card-body">
+                                    <input class="stext-104 cl3 plh4 size-117 bor13 p-lr-20 m-tb-5" type="text" name="address" placeholder="Enter Address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Accordion -->
+                </div>
+            </div>
+            <!-- /Personal Information Accordion -->
+
+            <!-- Payment Details -->
+            <div class="col-lg-5 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--38 m-lr-0-xl">
+                    <h4 class="mtext-109 cl2 p-b-30">
+                        Payment Details
+                    </h4>
+                    <!-- Payment Fields -->
+                    <div class="border border-dark rounded p-3">
+                        <div>
+                            <span class="stext-110 cl2">
+                                Card Number:
+                            </span>
+                            <input class="stext-104 cl3 plh4 size-117 bor13 p-lr-20 m-tb-5" type="text" name="card_number" placeholder="Enter Card Number">
+                        </div>
+                        <hr>
+                        <div>
+                            <span class="stext-110 cl2">
+                                Expiry Date:
+                            </span>
+                            <input class="stext-104 cl3 plh4 size-117 bor13 p-lr-20 m-tb-5" type="text" name="expiry_date" placeholder="MM/YYYY">
+                        </div>
+                        <hr>
+                        <div>
+                            <span class="stext-110 cl2">
+                                CVV:
+                            </span>
+                            <input class="stext-104 cl3 plh4 size-117 bor13 p-lr-20 m-tb-5" type="text" name="cvv" placeholder="CVV">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Payment Details -->
+        </div>
+
+        <!-- Checkout Button -->
+        <div class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+            <button type="submit">Proceed to Checkout</button>
+        </div>
+        <!-- /Checkout Button -->
+    </div>
+</form>
+
+    
+
+{% endblock %}
