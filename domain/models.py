@@ -49,11 +49,8 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'mobile_no'
     REQUIRED_FIELDS = ['password']
 
-  
-   
-
 class UserAddrsss(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
     type = models.CharField(max_length=200, null=True)
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=50, null=True)
@@ -62,8 +59,6 @@ class UserAddrsss(models.Model):
     status = models.SmallIntegerField(default=1, null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
-         
-    
 
 class MainMenus(models.Model):
     name = models.CharField(max_length=100, null=False)  
@@ -119,7 +114,6 @@ class Product(models.Model):
     status = models.SmallIntegerField(default=1, null=True)
     is_favorite = models.SmallIntegerField(default=0, null=True)
 
-
 class ProductVariant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
@@ -148,8 +142,6 @@ class OrderItems(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
-
-
 class Cart(models.Model):
     made_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=False)
     variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
@@ -158,7 +150,6 @@ class Cart(models.Model):
     price = models.FloatField(null=True, default=0.0)
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     updated_on = models.DateTimeField(auto_now=True, null=True)
-
 
 class TransactionDetails(models.Model):
     order = models.OneToOneField(Order, on_delete=models.CASCADE, null=False)
@@ -174,8 +165,6 @@ class TransactionDetails(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     paymtent_status = models.CharField(max_length=50, null=True, default="Paid")
     
-
-
 class TransactionAmount(models.Model):
     transaction = models.ForeignKey(
         TransactionDetails, on_delete=models.CASCADE, null=True

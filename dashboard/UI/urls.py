@@ -3,6 +3,7 @@ from . import specification
 from . import product
 from . import views 
 from . import category
+from . import customer
 
 urlpatterns = [
     path('',views.admin_login, name='admin_login'),
@@ -20,11 +21,9 @@ urlpatterns = [
     path('edit-size/<int:id>',category.edit_size, name='edit_size'),
     path('delete-size/<int:id>',category.delete_size, name='delete_size'),
 
-
-
-
-
-
+    # Customer
+    path('addcustomer', customer.add_customer,name='addcustomer'),
+    path('listcustomer',customer.view_customer,name='listcustomer'),
 
 
     path('category', specification.category, name='category'),

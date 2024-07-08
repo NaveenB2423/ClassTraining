@@ -92,15 +92,22 @@
                     </div>
 
                     <div href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              LOGIN
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">LOGOUT</a>
+                        {% if request.user.is_authenticated %}
+
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ request.user.first_name|title }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <!-- <a class="dropdown-item" href="/profile">My Account</a>
+                                    <a class="dropdown-item" href="/booking">My Bookings</a> -->
+                                    <a class="dropdown-item" href="/logout ">Logout</a>
+                                </div>
                             </div>
-                          </div>
-                        </div>
+                        {% else %}
+                        <a href="/login" class="nav-item nav-link" ><span id="loginBtn">Login</span></a>
+                        {% endif %}
+                    </div>
                 </div>
             </nav>
         </div>	

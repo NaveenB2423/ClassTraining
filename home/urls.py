@@ -9,6 +9,7 @@ urlpatterns = [
     path('about/',about_us, name='about_us'),
     path('contact/',contact_us, name='contact_us'),
     path('login/',customer_login, name='customer_login'),
+    path('logout/',customer_logout,name='customer_logout'),
     path('signup/',customer_signup, name='customer_signup'),
     path('products/',products,name='products'),
     path('product-details/<str:name>',product_details,name='product_details'),

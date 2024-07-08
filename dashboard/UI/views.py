@@ -23,3 +23,4 @@ def admin_login(request):
 
 def dashboard(request):
     return render(request,'forms.html')
+

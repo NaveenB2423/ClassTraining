@@ -34,7 +34,7 @@ def index(request):
 def main_products(request,menu):
     
     original_menu = menu.replace("-"," ")
-    products = Product.objects.filter(main_menu__name__iexact='tshirt')
+    products = Product.objects.filter(main_menu__name__iexact=menu)
   
     return render(request,'home/selected-products.html',{'current_url':menu,'products':products}) 
 def sub_products(request,main_menu,sub_menu):
@@ -65,6 +65,11 @@ def customer_login(request):
 
 
     return render(request,'home/login.html')
+
+def customer_logout(request):
+    logout(request)
+    return redirect('/')
+
 def customer_signup(request):
     if request.method == 'POST':
        new_user =  User()
@@ -98,6 +103,7 @@ def product_details(request,name):
         cart.save()
     print(product.__dict__)
     return render(request,'home/product-details.html',{'product':product})
+
 def shopping_cart(request):
     carts = Cart.objects.filter(made_by=request.user)
     total_amount = carts.aggregate(Sum('price'))['price__sum']

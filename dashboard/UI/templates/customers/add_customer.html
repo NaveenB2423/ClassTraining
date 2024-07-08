@@ -23,32 +23,65 @@
         <div class="col-md-12">
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Quick Example</h3>
+              <h3 class="card-title">Add Customer</h3>
             </div>
-            <form>
+            <form method="POST" action="">
+              {% csrf_token %}
               <div class="card-body">
                <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
+                <div class="col form-group">
+                  <label>Frist Name</label>
+                  <input type="text" class="form-control"  name="frist_name" placeholder="Frist Name">
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
+                <div class=" col form-group">
+                  <label>Last Name</label>
+                  <input type="text" class="form-control"  name="last_name" placeholder="Last Name">
                 </div>
                </div>
+               <div class="row">
+                <div class="col form-group">
+                  <label>Email</label>
+                  <input type="Email" class="form-control"  name="email" placeholder="Enter Email">
+                </div>
+                <div class=" col form-group">
+                  <label>Moblie</label>
+                  <input type="number" class="form-control"  name="mobile_no" placeholder="Moblie">
+                </div>
+               </div>
+               <div class="row">
+                <div class="col form-group">
+                  <label>Date Joined</label>
+                  <input type="date" class="form-control"  name="date_joined" placeholder="DOB">
+                </div>
+                <div class=" col form-group">
+                  <label>Role</label>
+                  <input type="text" class="form-control"  name="role" placeholder="Role">
+                </div>
+               </div>
+               <div class="row">
+                <div class="col-sm-6 form-group">
+                  <label>Address</label>
+                  <textarea class="form-control"  name="address" placeholder="Address"></textarea>
+                </div>
+                  <div class="col form-group">
+                    <label>City</label>
+                    <input class="form-control"  name="city" placeholder="Address"></input>
+                  </div>
+               </div>
+               <div class="row">
+                <div class="col form-group">
+                  <label>State</label>
+                  <input class="form-control"  name="state" placeholder="Address"></input>
+                </div>
+                <div class="col form-group">
+                  <label>Pin code</label>
+                  <input class="form-control"  name="pincode" placeholder="Address"></input>
+                </div>
+                <div class="col form-group">
+                  <label>Password</label><span style="color: red;">*</span>
+                  <input class="form-control" type="password"  name="password" placeholder="Password"></input>
+                </div>
+           </div>
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-info">Submit</button>
@@ -80,4 +113,5 @@
 
 
 {% endblock %}
+
 
