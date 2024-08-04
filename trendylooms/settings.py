@@ -129,6 +129,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 USER_IMAGE_UPLOAD_PATH = 'profile/'
 PRODUCT_IMAGE_UPLOAD_PATH = 'product/'
+CUSTOMIZE_IMAGE_UPLOAD_PATH = 'customize/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

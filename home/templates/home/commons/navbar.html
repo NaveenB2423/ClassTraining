@@ -45,9 +45,9 @@
                             <li class="{% if current_url == 'index' %}active-menu{% endif %}">
                                 <a href="{% url 'index' %}">Home</a>
                             </li>
-
-
-
+                            <li class="{% if current_url == 'custompage' %}active-menu{% endif %}">
+                                <a href="{% url 'custompage' %}">Customize Desgin</a>
+                            </li>
                               {% for menu in menus %}
                               {% if menu.submenus_set.all %}
                               <li class="{% if current_url == menu.name|slugify %}active-menu{% endif %}">
@@ -70,14 +70,6 @@
                             {%endif %}
 
                               {% endfor %} 
-
-
-
-                              
-
-
-
-
                         </ul>
                     </div>	
 

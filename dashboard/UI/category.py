@@ -30,10 +30,6 @@ def delete_main_menu(request, id):
     return redirect(create_main_menu)
     
 #End
-
-
-
-
 # Sub Menu
 def create_sub_menu(request):
     sub_menus = SubMenus.objects.filter(status=1).all()

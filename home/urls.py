@@ -5,7 +5,6 @@ urlpatterns = [
     path('', index,name='index' ),
     path('products/<str:menu>',main_products,name='main_products'),
     path('products/<str:main_menu>/<str:sub_menu>',sub_products,name='sub_products'),
-
     path('about/',about_us, name='about_us'),
     path('contact/',contact_us, name='contact_us'),
     path('login/',customer_login, name='customer_login'),
@@ -17,4 +16,5 @@ urlpatterns = [
     path('blog/',blog,name='blog'),
     path('blog-details/',blog_details,name='blog_details'),
     path('cart/', cart,name='cart' ),
+    path('custompage/',custompage,name='custompage')
 ]

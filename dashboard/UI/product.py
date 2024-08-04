@@ -31,7 +31,6 @@ def add_product(request):
 
     return render(request, 'product/add_product.html', {'categories':categories,'sizes':sizes,'colors':colors})
 
-
 def list_product(request):
     products = Product.objects.filter(status=1).all()
     return render(request, 'product/list_product.html',{'products': products})
@@ -83,7 +82,6 @@ def delete_product(request,id):
     product.save()
     return redirect(list_product)
 
-
 def ecommerce(request):
     product = Product.objects.filter(status=1).last()
     if request.method == 'POST':
@@ -102,8 +100,6 @@ def ecommerce(request):
         cart.save()
         
     return render(request,'product/e-commerce.html',{'product':product})
-
-
 
 def get_sub_menus(request):
     if request.method == "POST":

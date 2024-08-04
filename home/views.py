@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, HttpResponse
 from domain.models import Product, ProductVariant, Cart, Color, Size
-from domain.models import MainMenus, SubMenus, User
+from domain.models import MainMenus, SubMenus, User,Customizedesgin
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
@@ -117,3 +117,32 @@ def blog_details(request):
 def cart(request):
     carts = Cart.objects.filter(made_by=request.user)
     return render(request,'home/cart.html',{'carts':carts})
+
+def custompage(request):
+    sizes = Size.objects.filter(status=1).all()
+    colors = Color.objects.filter(status=1).all()
+    
+    if request.method == 'POST':
+        customize = Customizedesgin()
+        customize.Customername = request.POST.get('name', '').strip()
+        customize.moblie_no = request.POST.get('mobile_no', '').strip()
+        customize.email = request.POST.get('email', '').strip()
+
+        size_id = request.POST.get('size', '').strip()
+        color_id = request.POST.get('color', '').strip()
+        try:
+            customize.size = Size.objects.get(id=size_id)
+            customize.color = Color.objects.get(id=color_id)
+        except Size.DoesNotExist:
+            return HttpResponse("Size not found.", status=400)
+        except Color.DoesNotExist:
+            return HttpResponse("Color not found.", status=400)
+        
+        customize.attachment = request.FILES.get('design_image')
+        customize.describe = request.POST.get('describe', '').strip()
+        customize.save()
+    context ={
+        'size':sizes,
+        'color':colors
+    }
+    return render(request,'home/Custom-page.html',context)

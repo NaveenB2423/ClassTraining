@@ -178,7 +178,6 @@ class TransactionAmount(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     
-
 class PayTMTransactionDetails(models.Model):
     order = models.ForeignKey(Order, on_delete=models.DO_NOTHING, null=True)
     transaction_for = models.ForeignKey(
@@ -211,3 +210,13 @@ class CustomerReview(models.Model):
     review = models.CharField(max_length=500, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+class Customizedesgin(models.Model):
+    Customername = models.CharField(max_length=100,null=True)
+    moblie_no= models.CharField(max_length=100,null=True)
+    email = models.EmailField(max_length=100,null=True)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE,null=True)
+    size = models.ForeignKey(Size, on_delete=models.CASCADE,null=True)
+    attachment = models.ImageField(
+        upload_to=settings.CUSTOMIZE_IMAGE_UPLOAD_PATH, null=True)
+    describe = models.CharField(max_length=500,null=True)

@@ -24,7 +24,7 @@ urlpatterns = [
     # Customer
     path('addcustomer', customer.add_customer,name='addcustomer'),
     path('listcustomer',customer.view_customer,name='listcustomer'),
-
+    path('view_design',customer.view_design,name="view_design"),
 
     path('category', specification.category, name='category'),
     path('edit-category/<int:id>',specification.edit_category, name='edit_category'),

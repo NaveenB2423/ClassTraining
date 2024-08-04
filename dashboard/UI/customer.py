@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.http.response import JsonResponse
-from domain.models import User, UserAddrsss
+from domain.models import User, UserAddrsss,Customizedesgin
 from django.contrib.auth.hashers import make_password
 
 def add_customer(request):
@@ -37,3 +37,10 @@ def view_customer(request):
      
    }
    return render(request, 'customers/list_customers.html',context)
+
+def view_design(request):
+   data = Customizedesgin.objects.all()
+   context = {
+      'data':data,
+   }
+   return render(request,"custom_design.html",context)
