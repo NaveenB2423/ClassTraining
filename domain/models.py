@@ -220,3 +220,9 @@ class Customizedesgin(models.Model):
     attachment = models.ImageField(
         upload_to=settings.CUSTOMIZE_IMAGE_UPLOAD_PATH, null=True)
     describe = models.CharField(max_length=500,null=True)
+
+class Image(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200,null=True)
+    image = models.ImageField(upload_to=settings.BANNER_IMAGE_UPLOAD_PATH, null=True)
+    describe = models.CharField(max_length=200,null=True)

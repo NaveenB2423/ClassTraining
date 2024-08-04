@@ -37,5 +37,10 @@ urlpatterns = [
     path('delete-product/<int:id>',product.delete_product, name='delete_product'),
     path('update-home-item',product.update_home_item,name="update_home_item"),
     path('ecommerce',product.ecommerce, name='ecommerce'),
+
+    # Images
+    path('image', views.image, name='image'),
+    path('get_image',views.get_image,name='get_image'),
+    path('delete-image/<int:id>', views.delete_image, name='delete_image'),
     
 ]

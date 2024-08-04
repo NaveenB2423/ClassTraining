@@ -70,6 +70,7 @@ def edit_product(request,id):
 
         return redirect(list_product)
     return render(request, 'product/edit_product.html',{'product': product,'categories':categories,'sizes':sizes,'colors':colors})
+
 def update_home_item(request):
     id =  request.POST.get('id')
     data_id = request.POST.get('data_id') if request.POST.get('data_id') else  None

@@ -46,8 +46,6 @@
           </ul>
         </li>
 
-
-
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
@@ -123,7 +121,30 @@
 
           </ul>
         </li>
-
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Upload Images
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'image' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Image</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'get_image' %}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>View Image</p>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

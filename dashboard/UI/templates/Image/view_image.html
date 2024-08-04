@@ -1,0 +1,166 @@
+{% extends 'commons/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block css_link %}
+ <!-- DataTables -->
+ <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+ <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+ <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+{% endblock %}
+
+{% block custom_style %}
+<style>
+  .checked {
+    color: orange;
+  }
+</style>
+{% endblock %}
+
+
+{% block body %}
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>DataTables</h1>
+        </div>
+     
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          
+
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Image List</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                  {% for image in images %}
+                <tr>
+                  <td>{{image.name}}</td>
+                  <td>{{image.describe}}</td>
+                  {% if image.image %}
+                  <td>
+                    <img src="{{image.image.url}}" style="width: 50px;" />
+                  </td>
+                  {% else %}
+                  <td>
+                    
+                  </td>
+                  {% endif %}
+                  <td class="text-right py-0 align-middle">
+                    <div class="btn-group btn-group-sm">
+                        <a href="/media/{{image.image}}" class="btn btn-secondary p-2" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="{% url 'delete_image' image.id %}" class="btn btn-danger p-2"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </div>
+                    </td>
+                </tr>
+                {% endfor %}
+          
+                
+                </tbody>
+                
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+{% block js_scripts %}
+<!-- DataTables  & Plugins -->
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+
+
+{% endblock %}
+
+{% block custom_scripts %}
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+
+
+  $("#tbody").on("click", ".fa-star", function(){
+let id = $(this).attr("data-sid");
+let data_id = $(this).attr("data-vid");
+
+mydata = {id:id, data_id: data_id, csrfmiddlewaretoken: '{{ csrf_token }}' }
+$.ajax({
+        url: "{% url 'update_home_item' %}",
+        method: "POST", 
+        data: mydata,
+        success: function(data){
+        console.log(data);
+        if (data_id == 1){
+            $("#fav-"+id).addClass("checked");
+            $("#fav-"+id).attr("data-vid","");
+        }
+        else{
+            $("#fav-"+id).removeClass("checked");
+            $("#fav-"+id).attr("data-vid","1");
+        }
+        
+
+        }
+        })
+});
+</script>
+{% endblock %}
+
+
+
+{% endblock %}
+
