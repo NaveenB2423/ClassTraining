@@ -106,11 +106,53 @@
 
 								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 									<!-- Block2 -->
+									{% for image in image %}
+										<div class="block2">
+											{% if image.image %}
+												<div class="block2-pic hov-img0">
+													<img src="{{ image.image.url }}" alt="IMG-PRODUCT">
+			
+													<!-- <a href="product-detail.html" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+														Quick View
+													</a> -->
+												</div>
+			
+												<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt-child1 flex-col-l ">
+														<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+															{{ image.name }}
+														</a>
+													</div>
+												</div>
+											{% else %}
+											<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+									
+												<div class="block2">
+													<div class="block2-pic hov-img0">
+														<img src="{% static 'home/images/product-08.jpg' %}" alt="IMG-PRODUCT">
+													</div>
+				
+													<div class="block2-txt flex-w flex-t p-t-14">
+														<div class="block2-txt-child1 flex-col-l ">
+															<a href="{% url 'product' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+																Esprit Ruffle Shirt
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+											{% endif %}
+										</div>
+									{% endfor %}
+								</div>
+	
+								<!-- <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+									
 									<div class="block2">
 										<div class="block2-pic hov-img0">
 											<img src="{% static 'home/images/product-08.jpg' %}" alt="IMG-PRODUCT">
 	
-											<a href="product-detail.html" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+											 <a href="product-detail.html" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 												Quick View
 											</a>
 										</div>
@@ -120,29 +162,6 @@
 												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 													Esprit Ruffle Shirt
 												</a>
-	
-												<div class="stext-105 cl3 " style="flex-direction: column;">
-													<!-- <span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</span><br> -->
-													<div style="display:flex !important;margin-top: 3px;">
-														<i class="fa fa-inr" style="flex: none !important; color: #4272d7; font-size:16px;font-weight: 550;">160</i> 
-														<i class="fa fa-inr" style="font-size: 15px; color: #949393; padding: 0px 5px;"><del>200</del></i>
-														<span><h6>Off</h6></span></div>  
-													<div class="sizes mt-1">
-														<ul style="display: flex;">
-															<li>S</li>
-															<li>M</li>
-															<li>L</li>
-															<li>XL</li>
-															<li>XXL</li>
-														</ul>
-													</div>
-												</div>
 											</div>
 	
 											<div class="block2-txt-child2 flex-r p-t-3">
@@ -153,58 +172,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
-	
-								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-									<!-- Block2 -->
-									<div class="block2">
-										<div class="block2-pic hov-img0">
-											<img src="{% static 'home/images/product-08.jpg' %}" alt="IMG-PRODUCT">
-	
-											<a href="product-detail.html" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-												Quick View
-											</a>
-										</div>
-	
-										<div class="block2-txt flex-w flex-t p-t-14">
-											<div class="block2-txt-child1 flex-col-l ">
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-													Esprit Ruffle Shirt
-												</a>
-	
-												<div class="stext-105 cl3 " style="flex-direction: column;">
-													<!-- <span>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-													</span><br> -->
-													<div style="display:flex !important;margin-top: 3px;">
-														<i class="fa fa-inr" style="flex: none !important; color: #4272d7; font-size:16px;font-weight: 550;">160</i> 
-														<i class="fa fa-inr" style="font-size: 15px; color: #949393; padding: 0px 5px;"><del>200</del></i>
-														<span><h6>Off</h6></span></div>  
-													<div class="sizes mt-1">
-														<ul style="display: flex;">
-															<li>S</li>
-															<li>M</li>
-															<li>L</li>
-															<li>XL</li>
-															<li>XXL</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-	
-											<div class="block2-txt-child2 flex-r p-t-3">
-												<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-													<img class="icon-heart1 dis-block trans-04" src="{% static 'home/images/icons/icon-heart-01.png' %}" alt="ICON">
-													<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{% static 'home/images/icons/icon-heart-02.png' %}" alt="ICON">
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
+								</div> -->
 						
 							</div>
 						</div>
@@ -327,24 +295,25 @@
 							<!-- Slide2 -->
 							<div class="wrap-slick2">
 								<div class="slick2">
-									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
-										<div class="block2">		
-											<div class="block2-txt flex-w flex-t p-t-14">
-												<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-													<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
-														<div class="block2-pic hov-img0">
-															<img src="{% static 'home/images/product-01.jpg' %}" alt="IMG-PRODUCT">
-														</div>
-														Full Sleeve T-Shirt
-													</a>
+									{% for image in women_image%}
+										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<!-- Block2 -->
+											<div class="block2">		
+												<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
+														<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+															<div class="block2-pic hov-img0">
+																<img src="{{image.image.url}}" alt="IMG-PRODUCT">
+															</div>
+															{{image.name}}
+														</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-	
-									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
+									{% endfor %}
+									<!-- <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+										
 										<div class="block2">		
 											<div class="block2-txt flex-w flex-t p-t-14">
 												<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
@@ -358,10 +327,9 @@
 											</div>
 										</div>
 									</div>
-	
-	
+
 									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
+										
 										<div class="block2">		
 											<div class="block2-txt flex-w flex-t p-t-14">
 												<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
@@ -377,7 +345,7 @@
 									</div>
 	
 									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
+										
 										<div class="block2">		
 											<div class="block2-txt flex-w flex-t p-t-14">
 												<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
@@ -390,7 +358,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> -->
 
 								</div>
 							</div>
@@ -419,23 +387,25 @@
 							<!-- Slide2 -->
 							<div class="wrap-slick2">
 								<div class="slick2">
-									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
-										<div class="block2">		
-											<div class="block2-txt flex-w flex-t p-t-14">
-												<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-													<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
-														<div class="block2-pic hov-img0">
-															<img src="{% static 'home/images/product-11.jpg' %}" alt="IMG-PRODUCT">
-														</div>
-														Full Sleeve T-Shirt
-													</a>
+									{% for image in men_image%}
+										<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+											<!-- Block2 -->
+											<div class="block2">		
+												<div class="block2-txt flex-w flex-t p-t-14">
+													<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
+														<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+															<div class="block2-pic hov-img0">
+																<img src="{{image.image.url}}" alt="IMG-PRODUCT">
+															</div>
+															{{image.name}}
+														</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
+									{% endfor %}
+									<!-- <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+										
 										<div class="block2">		
 											<div class="block2-txt flex-w flex-t p-t-14">
 												<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
@@ -452,7 +422,7 @@
 	
 	
 									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
+										
 										<div class="block2">		
 											<div class="block2-txt flex-w flex-t p-t-14">
 												<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
@@ -468,7 +438,7 @@
 									</div>
 	
 									<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-										<!-- Block2 -->
+										
 										<div class="block2">		
 											<div class="block2-txt flex-w flex-t p-t-14">
 												<div class="block2-txt-child1 flex-col-l" style="background-color: #c5d2f8;">
@@ -481,7 +451,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> -->
 	
 								</div>
 							</div>

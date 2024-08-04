@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, HttpResponse
 from domain.models import Product, ProductVariant, Cart, Color, Size
-from domain.models import MainMenus, SubMenus, User,Customizedesgin
+from domain.models import MainMenus, SubMenus, User,Customizedesgin,Image
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
@@ -29,7 +29,16 @@ from django.db.models import Sum
 #     return render(request,'home/index.html',{'product':product})
 def index(request):
     menus = MainMenus.objects.filter(status=1).order_by('priority')
-    return render(request, 'home/index.html',{'menus':menus,'current_url':'index'})  
+    image = Image.objects.filter(describe = "Printed T-Shits")
+    women_image = Image.objects.filter(describe = "For Women")
+    men_image = Image.objects.filter(describe = "For Men")
+    context ={
+        'menus':menus,
+        'image':image,
+        'women_image':women_image,
+        'men_image':men_image
+    }
+    return render(request, 'home/index.html',context)  
 
 def main_products(request,menu):
     
