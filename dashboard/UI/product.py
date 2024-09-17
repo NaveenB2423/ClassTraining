@@ -36,7 +36,7 @@ def list_product(request):
     return render(request, 'product/list_product.html',{'products': products})
 
 def edit_product(request,id):
-    categories = Category.objects.filter(status=1).all()
+    categories = MainMenus.objects.filter(status=1).all
     sizes = Size.objects.filter(status=1).all()
     colors = Color.objects.filter(status=1).all()
     product = Product.objects.get(id=id)

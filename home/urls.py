@@ -13,6 +13,7 @@ urlpatterns = [
     path('products/',products,name='products'),
     path('product-details/<str:name>',product_details,name='product_details'),
     path('shopping-cart/',shopping_cart,name='shopping_cart'),
+    path('update-cart/',update_cart, name='update_cart'),
     path('blog/',blog,name='blog'),
     path('blog-details/',blog_details,name='blog_details'),
     path('cart/', cart,name='cart' ),

@@ -53,6 +53,20 @@
                                         </div>
                                     </div>
                                 </td>
+                                <!-- <td class="column-4">
+                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" data-id="{{ cart.id }}">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+                                
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="{{cart.qty}}" data-id="{{ cart.id }}" data-price="{{ cart.variant.product.discount_price }}">
+                                
+                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" data-id="{{ cart.id }}">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+                                </td>
+                                 -->
                                 <td class="column-5"><i class="fa fa-inr">{{cart.price}}</i></td>
                             </tr>
 
@@ -69,8 +83,8 @@
                             </div>
                         </div>
 
-                        <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-                            Update Cart
+                        <div  class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+                            <button type="submit">Update Cart</button>
                         </div>
                     </div>
                 </div>
@@ -141,6 +155,6 @@
         </div>
     </div>
 </form>
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 {% endblock %}

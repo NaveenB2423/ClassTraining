@@ -5,16 +5,44 @@
 <div class="bg0 m-t-23 p-b-40">
     <div class="container">
         <div class="flex-w flex-sb-m p-b-22">
-            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">
+            <!-- <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" >
                     {{products.last.main_menu.name}}
                 </button>
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
                     {{products.last.sub_menu.name}}
                 </button>
-
+                
+                <a href="{% url 'main_products' products.last.main_menu.name %}" type="button" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                    {{ products.last.main_menu.name }}
+                </a>
+                    <a href="{% url 'sub_products' products.last.main_menu.name products.last.sub_menu.name %}" type="button" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                        {{ products.last.sub_menu.name }}
+                    </a>    
+            </div> -->
+            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                {% for menu in menus %}
+                    {% if menu.submenus_set.all %}
+                        <!-- Main Menu Button -->
+                        <a href="{% url 'main_products' menu.name|slugify %}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                            {{ menu.name }}
+                        </a>
+            
+                        <!-- Submenu Buttons -->
+                        {% for sub_menu in menu.submenus_set.all %}
+                            <a href="{% url 'sub_products' menu.name|slugify sub_menu.name|slugify %}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                                {{ sub_menu.name }}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <!-- Menu Button Without Submenu -->
+                        <a href="{% url 'main_products' menu.name|slugify %}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                            {{ menu.name }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
             </div>
-
+        
             
             <!-- Search product -->
             <div class="dis-none panel-search w-full p-t-10 p-b-15">
@@ -32,7 +60,7 @@
 
         <div class="row isotope-grid">
             {% for product in products %}
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item" >
                 <!-- Block2 -->
                 <div class="block2">
                     <div class="block2-pic hov-img0">

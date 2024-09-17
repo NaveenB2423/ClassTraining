@@ -40,23 +40,29 @@ def index(request):
     }
     return render(request, 'home/index.html',context)  
 
-def main_products(request,menu):
-    
-    original_menu = menu.replace("-"," ")
+def main_products(request, menu):
+    original_menu = menu.replace("-", " ")
     products = Product.objects.filter(main_menu__name__iexact=menu)
-  
-    return render(request,'home/selected-products.html',{'current_url':menu,'products':products}) 
-def sub_products(request,main_menu,sub_menu):
-    original_menu = main_menu.replace("-"," ")
-    original_sub_menu = sub_menu.replace("-"," ")
-    products = Product.objects.filter(main_menu__name__iexact=original_menu,sub_menu__name__iexact=original_sub_menu)
-   
-    return render(request,'home/selected-products.html',{'current_url':main_menu,'products':products}) 
+    if not products.exists():
+        # Handle the case where no products are found
+        return HttpResponse(f"No products found for {original_menu}")
+    return render(request, 'home/selected-products.html', {'current_url': menu, 'products': products})
+
+def sub_products(request, main_menu, sub_menu):
+    original_menu = main_menu.replace("-", " ")
+    original_sub_menu = sub_menu.replace("-", " ")
+    products = Product.objects.filter(main_menu__name__iexact=original_menu, sub_menu__name__iexact=original_sub_menu)
+    if not products.exists():
+        # Handle the case where no products are found
+        return HttpResponse(f"No products found for {original_menu}")
+    return render(request, 'home/selected-products.html', {'current_url': main_menu, 'products': products})
 
 def about_us(request):
     return render(request,'home/about.html')
+
 def contact_us(request):
     return render(request,'home/contact.html')
+
 def customer_login(request):
 
     if request.method == 'POST':
@@ -89,17 +95,25 @@ def customer_signup(request):
        new_user.is_password_set =1
        new_user.save()
     return render(request,'home/signup.html')
+
 def products(request):
-    return render(request,'home/product.html')
+    products = Product.objects.all()
+    distinct_sizes = Size.objects.filter(
+        productvariant__product__in=products
+    ).distinct()
+
+    return render(request, 'home/product.html', {
+        "product": products,
+        "distinct_sizes": distinct_sizes
+    })
+
 def product_details(request,name):
     original_name = name.replace("-"," ")
     product = Product.objects.filter(name__iexact=original_name).last()
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
         size_name = request.POST.get('size')
-        
         color_name =request.POST.get('color')
-       
         qty =request.POST.get('qty')
         size = Size.objects.get(name=size_name,status=1)
         color = Color.objects.get(name=color_name,status=1)
@@ -118,8 +132,32 @@ def shopping_cart(request):
     total_amount = carts.aggregate(Sum('price'))['price__sum']
     print(total_amount)
     return render(request,'home/shopping-cart.html',{'carts':carts,'total_amount':total_amount})
+
+
+def update_cart(request):
+    if request.method == 'POST':
+        cart_id = request.POST.get('cart_id')
+        qty = int(request.POST.get('qty'))
+
+        # Get the cart item and update the quantity
+        cart = Cart.objects.get(id=cart_id, made_by=request.user)
+        cart.qty = qty
+        cart.save()
+
+        # Recalculate the total for this cart item
+        item_total = cart.qty * cart.variant.product.discount_price
+        
+        # Recalculate the total amount for the cart
+        total_amount = Cart.objects.filter(made_by=request.user).aggregate(Sum('price'))['price__sum']
+
+        return JsonResponse({
+            'total_amount': total_amount,
+            'item_total': item_total
+        })
+
 def blog(request):
     return render(request,'home/blog.html')
+
 def blog_details(request):
     return render(request,'home/blog-details.html')
 

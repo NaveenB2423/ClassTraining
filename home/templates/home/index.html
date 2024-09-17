@@ -103,16 +103,16 @@
 						<div class="wrap-slick2">
 							<div class="slick2">
 
-
+								{% for image in image %}
 								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 									<!-- Block2 -->
-									{% for image in image %}
+									
 										<div class="block2">
 											{% if image.image %}
 												<div class="block2-pic hov-img0">
 													<img src="{{ image.image.url }}" alt="IMG-PRODUCT">
 			
-													<!-- <a href="product-detail.html" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+													<!-- <a href="{% url 'products' %}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 														Quick View
 													</a> -->
 												</div>
@@ -143,9 +143,9 @@
 											</div>
 											{% endif %}
 										</div>
-									{% endfor %}
+									
 								</div>
-	
+								{% endfor %}
 								<!-- <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 									
 									<div class="block2">
@@ -301,7 +301,7 @@
 											<div class="block2">		
 												<div class="block2-txt flex-w flex-t p-t-14">
 													<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-														<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+														<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 															<div class="block2-pic hov-img0">
 																<img src="{{image.image.url}}" alt="IMG-PRODUCT">
 															</div>
@@ -393,7 +393,7 @@
 											<div class="block2">		
 												<div class="block2-txt flex-w flex-t p-t-14">
 													<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-														<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+														<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 															<div class="block2-pic hov-img0">
 																<img src="{{image.image.url}}" alt="IMG-PRODUCT">
 															</div>
@@ -488,11 +488,11 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-06.jpg' %}" alt="IMG-PRODUCT">
 												</div>
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+												<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 													Pieces Metallic Printed
 												</a>
 											</a>
@@ -523,11 +523,11 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-06.jpg' %}" alt="IMG-PRODUCT">
 												</div>
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+												<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 													Pieces Metallic Printed
 												</a>
 											</a>
@@ -557,11 +557,11 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-06.jpg' %}" alt="IMG-PRODUCT">
 												</div>
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+												<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 													Pieces Metallic Printed
 												</a>
 											</a>
@@ -591,11 +591,11 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-06.jpg' %}" alt="IMG-PRODUCT">
 												</div>
-												<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+												<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 													Pieces Metallic Printed
 												</a>
 											</a>
@@ -655,7 +655,7 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-08.jpg' %}" alt="IMG-PRODUCT">
 												</div>
@@ -671,7 +671,7 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-08.jpg' %}" alt="IMG-PRODUCT">
 												</div>
@@ -687,7 +687,7 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-08.jpg' %}" alt="IMG-PRODUCT">
 												</div>
@@ -704,7 +704,7 @@
 								<div class="block2">		
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l" style="background-color: #c1cdf1;">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
+											<a href="{% url 'products' %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 txt-center" style="color:black">
 												<div class="block2-pic hov-img0">
 													<img src="{% static 'home/images/product-08.jpg' %}" alt="IMG-PRODUCT">
 												</div>
