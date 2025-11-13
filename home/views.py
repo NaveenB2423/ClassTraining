@@ -4,6 +4,8 @@ from domain.models import MainMenus, SubMenus, User,Customizedesgin,Image
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -111,26 +113,32 @@ def product_details(request,name):
     original_name = name.replace("-"," ")
     product = Product.objects.filter(name__iexact=original_name).last()
     if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        size_name = request.POST.get('size')
-        color_name =request.POST.get('color')
-        qty =request.POST.get('qty')
-        size = Size.objects.get(name=size_name,status=1)
-        color = Color.objects.get(name=color_name,status=1)
-        productVariant = ProductVariant.objects.get(product_id=product_id, size=size, color=color)
-        cart = Cart()
-        cart.made_by=request.user
-        cart.variant=productVariant
-        cart.qty = qty
-        cart.price=product.discount_price * float(qty)
-        cart.save()
+        if request.user.is_authenticated:
+            product_id = request.POST.get('product_id')
+            size_name = request.POST.get('size')
+            color_name =request.POST.get('color')
+            qty =request.POST.get('qty')
+            size = Size.objects.get(name=size_name,status=1)
+            color = Color.objects.get(name=color_name,status=1)
+            productVariant = ProductVariant.objects.get(product_id=product_id, size=size, color=color)
+            cart = Cart()
+            cart.made_by=request.user
+            cart.variant=productVariant
+            cart.qty = qty
+            cart.price=product.discount_price * float(qty)
+            cart.save()
+        else:
+            return HttpResponse(f"Please login to add items to cart.") 
     print(product.__dict__)
     return render(request,'home/product-details.html',{'product':product})
 
 def shopping_cart(request):
-    carts = Cart.objects.filter(made_by=request.user)
-    total_amount = carts.aggregate(Sum('price'))['price__sum']
-    print(total_amount)
+    if request.user.is_authenticated:
+        carts = Cart.objects.filter(made_by=request.user)
+        total_amount = carts.aggregate(Sum('price'))['price__sum']
+        print(total_amount)
+    else:
+        return HttpResponse("Please login to view cart.")
     return render(request,'home/shopping-cart.html',{'carts':carts,'total_amount':total_amount})
 
 
