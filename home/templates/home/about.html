@@ -2,86 +2,208 @@
 {% load static %}
 {% block content %}
 
-<!-- Title page -->
-<div class="item-slick1" ">
-					
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static "home/images/bg-01.jpg" %}');">
-    <h2 class="ltext-105 cl0 txt-center">
-        About
-    </h2>
-</section>	
+<style>
+/* ================= ABOUT PAGE UI REFINEMENT ================= */
 
+:root {
+    --primary: #717fe0;
+    --dark: #222;
+    --text: #555;
+    --light-bg: #f8f9fc;
+}
 
-<!-- Content page -->
-<section class="bg0 p-t-75 p-b-120">
+/* ---------- HERO ---------- */
+.about-hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.about-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.45)
+    );
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+/* ---------- CARDS ---------- */
+.about-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 42px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 55px rgba(0,0,0,0.12);
+}
+
+.about-text {
+    font-size: 15.5px;
+    line-height: 1.85;
+    color: var(--text);
+}
+
+/* ---------- IMAGES ---------- */
+.about-image {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    transition: transform 0.4s ease;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
+}
+
+/* ---------- QUOTE ---------- */
+.quote-box {
+    border-left: 4px solid var(--primary);
+    background: var(--light-bg);
+    padding: 28px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.quote-author {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: 340px;
+    }
+
+    .about-card {
+        padding: 30px;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-card {
+        padding: 26px;
+    }
+
+    .about-text {
+        font-size: 15px;
+    }
+}
+</style>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="about-hero text-center"
+    style="background-image: url('{% static 'home/images/bg-01.jpg' %}');">
+    <div class="about-hero-content">
+        <h1 class="ltext-105 cl0 section-title">
+            About Us
+        </h1>
+        <p class="stext-113 cl0 p-t-15">
+            Who we are & what we believe in
+        </p>
+    </div>
+</section>
+
+<!-- ================= ABOUT CONTENT ================= -->
+<section class="bg0 p-t-100 p-b-120">
     <div class="container">
-        <div class="row p-b-148">
-            <div class="col-md-7 col-lg-8">
-                <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-                    <h3 class="mtext-111 cl2 p-b-16">
+
+        <!-- OUR STORY -->
+        <div class="row align-items-center p-b-120">
+            <div class="col-md-7 col-lg-8 p-b-30">
+                <div class="about-card">
+                    <h3 class="mtext-111 cl2 p-b-20 section-title">
                         Our Story
                     </h3>
 
-                    <p class="stext-113 cl6 p-b-26">
-                        It is a necessity of man. You can judge one’s character, taste and habits by the dress he wears. They are the stages of the wearer.
+                    <p class="about-text p-b-15">
+                        Fashion is a necessity of life. A person’s character, taste, and lifestyle can be understood through the way they dress. Clothing represents the stages of a person’s journey.
                     </p>
 
-                    <p class="stext-113 cl6 p-b-26">
-                        The fashion in dress has changed many times. In the olden days in India man used to wear dhoti, kurta or shirt and women sarees or lehnga. Then came pant-shirt for man and salwar suits for women.
+                    <p class="about-text p-b-15">
+                        Over the years, fashion has evolved significantly. From traditional attire like dhotis, kurtas, sarees, and lehngas to modern pant-shirt and contemporary styles, fashion continues to transform.
                     </p>
 
-                    <p class="stext-113 cl6 p-b-26">
-                        The colours and cuts have also changed pattern. Sometime it is light colour and sometime it is dark. Sometimes it is loose fitting and sometimes it is skin fit. Sometimes it is three piece suit and the other time it is two piece suit.		</p>
+                    <p class="about-text">
+                        Colors, fits, and patterns change with time — from loose to slim fits, light shades to bold tones, reflecting culture and confidence.
+                    </p>
                 </div>
             </div>
 
-            <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-                <div class="how-bor1 ">
-                    <div class="hov-img0">
-                        <img src="{% static 'home/images/about-01.jpg' %}" alt="IMG">
-                    </div>
+            <div class="col-md-5 col-lg-4 p-b-30">
+                <div class="about-image">
+                    <img src="{% static 'home/images/about-01.jpg' %}" alt="Our Story">
                 </div>
             </div>
         </div>
-        
-        <div class="row">
+
+        <!-- OUR MISSION -->
+        <div class="row align-items-center">
             <div class="order-md-2 col-md-7 col-lg-8 p-b-30">
-                <div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
-                    <h3 class="mtext-111 cl2 p-b-16">
+                <div class="about-card">
+                    <h3 class="mtext-111 cl2 p-b-20 section-title">
                         Our Mission
                     </h3>
 
-                    <p class="stext-113 cl6 p-b-26">
-                        It is a necessity of man. You can judge one’s character, taste and habits by the dress he wears. They are the stages of the wearer.
-
-The fashion in dress has changed many times. In the olden days in India man used to wear dhoti, kurta or shirt and women sarees or lehnga. Then came pant-shirt for man and salwar suits for women.
-
-The colours and cuts have also changed pattern. Sometime it is light colour and sometime it is dark. Sometimes it is loose fitting and sometimes it is skin fit. Sometimes it is three piece suit and the other time it is two piece suit.
-
-You can find young boys wearing gaudy clothes. They will thrust a handkerchief in the upper pocket of their coat and a flower in the button hole.
+                    <p class="about-text p-b-20">
+                        Our mission is to redefine fashion by blending tradition with modern style. We believe clothing should express confidence, creativity, and individuality.
                     </p>
 
-                    <div class="bor16 p-l-29 p-b-9 m-t-22">
-                        <p class="stext-114 cl6 p-r-40 p-b-11">
-                            Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-                        </p>
+                    <p class="about-text">
+                        We focus on quality, comfort, and timeless designs that suit every generation. Fashion should inspire people and empower them to express themselves freely.
+                    </p>
 
-                        <span class="stext-111 cl8">
-                            - Steve Job’s 
+                    <div class="quote-box">
+                        <p class="about-text p-b-10">
+                            “Creativity is just connecting things. When creative people explain their process, they realize it felt obvious to them after some time.”
+                        </p>
+                        <span class="quote-author">
+                            — Steve Jobs
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
-                <div class="how-bor2">
-                    <div class="hov-img0">
-                        <img src="{% static 'home/images/about-02.jpg' %}" alt="IMG">
-                    </div>
+            <div class="order-md-1 col-md-5 col-lg-4 p-b-30">
+                <div class="about-image">
+                    <img src="{% static 'home/images/about-02.jpg' %}" alt="Our Mission">
                 </div>
             </div>
         </div>
+
     </div>
-</section>	
+</section>
 
 {% endblock %}
