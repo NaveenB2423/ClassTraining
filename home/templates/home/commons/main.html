@@ -2,155 +2,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Classic Looms</title>
-	<!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{% static 'home/images/icons/favicon.png' %}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/iconic/css/material-design-iconic-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/css-hamburgers/hamburgers.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/animsition/css/animsition.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/daterangepicker/daterangepicker.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/slick/slick.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/MagnificPopup/magnific-popup.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'home/css/main.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+    <title>{% block title %}Trendy Looms{% endblock %}</title>
 
-<!--===============================================================================================-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Trendy Looms – Premium Mens & Womens Wear">
+    <meta name="keywords" content="Trendy Looms, Fashion, Clothing, Online Store">
+    <meta name="author" content="Trendy Looms">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'home/images/icons/favicon.png' %}">
+
+    <!-- ================= CSS ================= -->
+    <link rel="stylesheet" href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'home/vendor/animate/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/animsition/css/animsition.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/daterangepicker/daterangepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/MagnificPopup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="{% static 'home/css/util.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+    {% block extra_css %}{% endblock %}
 </head>
+
 <body class="animsition">
-	
-	<!-- Header -->
-	{% include 'home/commons/navbar.html' %}
 
-	{% block content %}
-	{% endblock %}
-	<!-- Footer -->
-	{% include 'home/commons/footer.html' %}
+    <!-- ================= HEADER ================= -->
+    {% include 'home/commons/navbar.html' %}
 
+    <!-- ================= PAGE CONTENT ================= -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
+    <!-- ================= FOOTER ================= -->
+    {% include 'home/commons/footer.html' %}
 
-<!--===============================================================================================-->	
-<script src="{% static 'home/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/vendor/animsition/js/animsition.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/vendor/bootstrap/js/popper.js' %}"></script>
-	<script src="{% static 'home/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/vendor/select2/select2.min.js' %}"></script>
-	<script>
-		$(".js-select2").each(function(){
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/' %}vendor/daterangepicker/moment.min.js"></script>
-	<script src="{% static 'home/' %}vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/' %}vendor/slick/slick.min.js"></script>
-	<script src="{% static 'home/' %}js/slick-custom.js"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/' %}vendor/parallax100/parallax100.js"></script>
-	<script>
+    <!-- ================= JS ================= -->
+    <script src="{% static 'home/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'home/vendor/animsition/js/animsition.min.js' %}"></script>
+    <script src="{% static 'home/vendor/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'home/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'home/vendor/select2/select2.min.js' %}"></script>
+    <script>
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        });
+    </script>
+
+    <script src="{% static 'home/vendor/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'home/vendor/daterangepicker/daterangepicker.js' %}"></script>
+
+    <script src="{% static 'home/vendor/slick/slick.min.js' %}"></script>
+    <script src="{% static 'home/js/slick-custom.js' %}"></script>
+
+    <script src="{% static 'home/vendor/parallax100/parallax100.js' %}"></script>
+    <script>
         $('.parallax100').parallax100();
-	</script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
-	<script>
-		$('.gallery-lb').each(function() { // the containers for all your galleries
-			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
-		});
-	</script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/vendor/isotope/isotope.pkgd.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/vendor/sweetalert/sweetalert.min.js' %}"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
+    </script>
 
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+    <script src="{% static 'home/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+    <script>
+        $('.gallery-lb').each(function () {
+            $(this).magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                gallery: { enabled: true },
+                mainClass: 'mfp-fade'
+            });
+        });
+    </script>
 
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
+    <script src="{% static 'home/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'home/vendor/sweetalert/sweetalert.min.js' %}"></script>
 
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+    <script src="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
 
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+            $(window).on('resize', function () {
+                ps.update();
+            });
+        });
+    </script>
 
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
+    <script src="{% static 'home/js/main.js' %}"></script>
 
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-	</script>
-<!--===============================================================================================-->
-	<script src="{% static 'home/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 
 </body>
 </html>

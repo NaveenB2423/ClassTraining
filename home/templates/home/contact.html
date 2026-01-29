@@ -2,97 +2,252 @@
 {% load static %}
 {% block content %}
 
-	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static "home/images/bg-01.jpg" %}');">
-		<h2 class="ltext-105 cl0 txt-center">
-			Contact
-		</h2>
-	</section>	
+<!-- ================= HERO SECTION ================= -->
+<section class="contact-hero">
+	<div class="contact-hero-overlay">
+		<h2 class="contact-title">Contact Us</h2>
+		<p class="contact-subtitle">We’d love to hear from you. Send us a message anytime.</p>
+	</div>
+</section>
 
+<!-- ================= CONTENT SECTION ================= -->
+<section class="contact-section">
+	<div class="container">
+		<div class="contact-wrapper">
 
-	<!-- Content page -->
-	<section class="bg0 p-t-94 p-b-100">
-		<div class="container">
-			<div class="flex-w flex-tr">
-				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form>
-						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							Send Us A Message
-						</h4>
+			<!-- ===== CONTACT FORM ===== -->
+			<div class="contact-card">
+				<form>
+					<h4 class="contact-card-title">Send Us a Message</h4>
 
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
-							<img class="how-pos4 pointer-none" src="{% static 'home/images/icons/icon-email.png' %}" alt="ICON">
+					<div class="form-group">
+						<label class="form-label">Email Address</label>
+						<div class="input-icon">
+							<input
+								class="form-input"
+								type="text"
+								name="email"
+								placeholder="your@email.com"
+							>
+							<img src="{% static 'home/images/icons/icon-email.png' %}" alt="Email">
 						</div>
+					</div>
 
-						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
-						</div>
+					<div class="form-group">
+						<label class="form-label">Message</label>
+						<textarea
+							class="form-textarea"
+							name="msg"
+							placeholder="How can we help you?"
+						></textarea>
+					</div>
 
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Submit
-						</button>
-					</form>
+					<button class="form-button" type="submit">
+						Send Message
+					</button>
+				</form>
+			</div>
+
+			<!-- ===== CONTACT INFO ===== -->
+			<div class="contact-info">
+				<div class="info-item">
+					<span class="info-icon lnr lnr-map-marker"></span>
+					<div>
+						<h5>Address</h5>
+						<p># 30 abc colony, xyz main road,<br>Salem city, Tamil Nadu, India.</p>
+					</div>
 				</div>
 
-				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
-					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-map-marker"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Address
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								# 30 abc colony, xyz main road, Salem city, Tamil Nadu, India.
-							</p>
-						</div>
+				<div class="info-item">
+					<span class="info-icon lnr lnr-phone-handset"></span>
+					<div>
+						<h5>Let’s Talk</h5>
+						<p>+91 99999-88888</p>
 					</div>
+				</div>
 
-					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-phone-handset"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Lets Talk
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								+91 99999-88888
-							</p>
-						</div>
-					</div>
-
-					<div class="flex-w w-full">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-envelope"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Sale Support
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								contact@example.com
-							</p>
-						</div>
+				<div class="info-item">
+					<span class="info-icon lnr lnr-envelope"></span>
+					<div>
+						<h5>Sales Support</h5>
+						<p>contact@example.com</p>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>	
-	
-	
-	<!-- Map -->
-	<div class="map">
-		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-	</div>
 
+		</div>
+	</div>
+</section>
+
+<!-- ================= MAP ================= -->
+<div class="map-wrapper">
+	<div
+		class="size-303"
+		id="google_map"
+		data-map-x="40.691446"
+		data-map-y="-73.886787"
+		data-pin="images/icons/"
+		data-scrollwhell="0"
+		data-draggable="1"
+		data-zoom="11">
+	</div>
+</div>
+
+<!-- ================= UI FIX STYLES ================= -->
+<style>
+/* RESET EXTRA SPACE */
+body {
+	margin-bottom: 0;
+}
+
+/* HERO */
+.contact-hero {
+	background: url("{% static 'home/images/bg-01.jpg' %}") center/cover no-repeat;
+	min-height: 280px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.contact-hero-overlay {
+	background: rgba(0, 0, 0, 0.55);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding: 80px 15px;
+}
+.contact-title {
+	color: #fff;
+	font-size: 42px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+.contact-subtitle {
+	color: #eaeaea;
+	font-size: 16px;
+}
+
+/* CONTENT */
+.contact-section {
+	padding: 90px 0;
+	background: #f9fafb;
+}
+
+/* GRID */
+.contact-wrapper {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr;
+	gap: 40px;
+}
+@media (max-width: 991px) {
+	.contact-wrapper {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* CARD */
+.contact-card,
+.contact-info {
+	background: #fff;
+	border-radius: 14px;
+	padding: 40px;
+	box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* FORM */
+.contact-card-title {
+	text-align: center;
+	font-size: 24px;
+	font-weight: 600;
+	margin-bottom: 30px;
+}
+.form-group {
+	margin-bottom: 22px;
+}
+.form-label {
+	font-size: 14px;
+	margin-bottom: 6px;
+	display: block;
+}
+.input-icon {
+	position: relative;
+}
+.input-icon img {
+	position: absolute;
+	left: 14px;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0.6;
+}
+.form-input,
+.form-textarea {
+	width: 100%;
+	padding: 14px 16px 14px 44px;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	transition: 0.3s;
+}
+.form-textarea {
+	min-height: 140px;
+	padding-left: 16px;
+}
+.form-input:focus,
+.form-textarea:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+	outline: none;
+}
+.form-button {
+	width: 100%;
+	background: linear-gradient(135deg, #007bff, #0056d2);
+	color: #fff;
+	padding: 14px;
+	border-radius: 30px;
+	border: none;
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.3s;
+}
+.form-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 25px rgba(0,123,255,0.35);
+}
+
+/* INFO */
+.contact-info {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.info-item {
+	display: flex;
+	gap: 16px;
+}
+.info-icon {
+	font-size: 22px;
+	color: #007bff;
+}
+.info-item h5 {
+	margin: 0;
+	font-size: 16px;
+}
+.info-item p {
+	margin-top: 6px;
+	color: #666;
+}
+
+/* MAP FIX (IMPORTANT) */
+.map-wrapper {
+	margin-top: 0;
+}
+#google_map {
+	height: 320px !important;
+	width: 100%;
+}
+
+/* REMOVE EXTRA BOTTOM SPACE */
+.map-wrapper:last-child {
+	margin-bottom: 0;
+}
+</style>
 
 {% endblock %}

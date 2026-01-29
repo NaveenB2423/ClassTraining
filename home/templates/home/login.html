@@ -2,86 +2,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{% static 'home/images/icons/favicon.png' %}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/iconic/css/material-design-iconic-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
-<!--==========================================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'home/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'home/css/main.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}">
+    <title>Login | Trendy Looms</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'home/images/icons/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(
+                rgba(0,0,0,0.55),
+                rgba(0,0,0,0.55)
+            ),
+            url("{% static 'home/images/bg login.jpg' %}") no-repeat center center / cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            padding: 40px 35px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+            color: #fff;
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .brand h1 {
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .brand span:first-child {
+            color: #3581f3;
+        }
+
+        .brand span:last-child {
+            color: #7CFC00;
+        }
+
+        .brand p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .form-control {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: #fff;
+            height: 48px;
+            border-radius: 10px;
+        }
+
+        .form-control::placeholder {
+            color: #ddd;
+        }
+
+        .form-control:focus {
+            background: rgba(255,255,255,0.25);
+            box-shadow: none;
+            color: #fff;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3581f3, #5fa0ff);
+            border: none;
+            border-radius: 10px;
+            height: 48px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2c6fe0, #4f8cf0);
+        }
+
+        .btn-success {
+            border-radius: 10px;
+            height: 48px;
+            font-weight: 600;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 30px 22px;
+            }
+        }
+    </style>
 </head>
-<style>
-	* {
-		box-sizing: border-box;
-	}
 
-	body {
-        background-image: url('{% static "home/images/bg login.jpg');
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		height: 100%;
-	}
-</style>
-</head>
+<body>
 
-<body style="background-image: url('{% static "home/images/bg login.jpg" %}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; height: 100%;">
-
-    <div class="container">
-        <div style="display: flex; flex-wrap: wrap;">
-
-            <div class="size-210  flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
-                <div class="flex-w w-full p-b-42">
-                    <div class="size-212 p-t-2" id="classicloomdiv">
-                        <span class="mtext-110 cl2" style="display: flex;">
-                            <h1 style="color: rgb(53, 129, 243);" id="classicTxt">TRENDY</h1> 
-                            <h1 id="classicTxt" style="color: chartreuse;">LOOMS</h1>
-                        </span>
-                        <p class="stext-115 cl1 size-213 p-t-5 text-white">
-                            Mens & Womens Wears
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="size-210 w-full-md m-t-0 m-b-40">
-                <form class="p-lr-40 p-tb-35" id='formbox' action="" method="post">
-                    {% csrf_token %}
-                    <h1 class="p-b-30 text-white text-center" id="loginTxt">Login</h1>
-                    <div class="form-group text-white">
-                        <label >Mobile No</label>
-                        <input type="text" class="form-control"   name="mobile" placeholder="Enter Mobile NO">
-                    </div>
-                    <div class="form-group text-white">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                    </div>
-                    <div class="form-group form-check text-white" style="display: flex;">
-                        <!-- <label class="form-check-label m-r-20 m-t-0" for="exampleCheck1">Forget Password</label> -->
-                        <!-- <label class="form-check-label m-r-20 m-t-0" for="exampleCheck1">Forget Password</label>
-                        <label class="form-check-label" for="exampleCheck1"> <a href="/signup">SignUp</a></label> -->
-                    </div>
-                    <button type="submit" class="btn btn-primary text-white submit">Submit</button>
-                    <a href="/signup" class="btn btn-success text-white">SignUp</a>
-                </form>
-            </div>
-        </div>
+<div class="login-card">
+    <div class="brand">
+        <h1>
+            <span>TRENDY</span>
+            <span>LOOMS</span>
+        </h1>
+        <p>Mens & Womens Wears</p>
     </div>
+
+    <form method="post" action="">
+        {% csrf_token %}
+
+        <h4 class="text-center mb-4">Login</h4>
+
+        <div class="form-group">
+            <label>Mobile No</label>
+            <input type="text" name="mobile" class="form-control" placeholder="Enter Mobile No">
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Enter Password">
+        </div>
+
+        <div class="action-buttons">
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <a href="/signup" class="btn btn-success w-100">Sign Up</a>
+        </div>
+    </form>
+</div>
+
 </body>
 </html>
-
-
