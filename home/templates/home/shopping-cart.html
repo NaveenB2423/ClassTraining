@@ -147,14 +147,48 @@
                         </div>
                     </div>
 
-                    <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                    <button type="button" id="checkout_btn" 
+                        class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                         Proceed to Checkout
                     </button>
+
                 </div>
             </div>
         </div>
     </div>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+$("#checkout_btn").click(function () {
+
+    $.ajax({
+        url: "/payment/",
+        method: "GET",
+        success: function (data) {
+
+            var options = {
+                "key": data.key,
+                "amount": data.amount,
+                "currency": "INR",
+                "name": data.name,
+                "order_id": data.order_id,
+                "handler": function (response) {
+                    window.location.href = "/payment/success/?payment_id=" + 
+                         response.razorpay_payment_id;
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        }
+    });
+});
+</script>
+
 
 {% endblock %}

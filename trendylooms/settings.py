@@ -138,3 +138,6 @@ BANNER_IMAGE_UPLOAD_PATH = 'banner/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'domain.User'
+
+RAZORPAY_API_KEY = 'rzp_test_Re3mSnvORrkpiR'
+RAZORPAY_API_SECRET = '4Oe70Q6v7xiyPhGnGPT3oDz7'

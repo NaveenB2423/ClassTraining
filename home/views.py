@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import redirect, render, HttpResponse
 from domain.models import Product, ProductVariant, Cart, Color, Size
 from domain.models import MainMenus, SubMenus, User,Customizedesgin,Image
@@ -5,7 +6,10 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
 from django.contrib import messages
-
+import razorpay
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -171,7 +175,7 @@ def blog_details(request):
 
 def cart(request):
     carts = Cart.objects.filter(made_by=request.user)
-    return render(request,'home/cart.html',{'carts':carts})
+    return render(request,'home/pay-cart.html',{'carts':carts})
 
 def custompage(request):
     sizes = Size.objects.filter(status=1).all()
@@ -201,3 +205,35 @@ def custompage(request):
         'color':colors
     }
     return render(request,'home/Custom-page.html',context)
+
+# views.py
+
+
+def create_order(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "login required"}, status=401)
+
+    carts = Cart.objects.filter(made_by=request.user)
+    total_amount = carts.aggregate(Sum('price'))['price__sum']
+
+    if not total_amount:
+        return JsonResponse({"error": "No items in cart"}, status=400)
+
+    amount_in_paisa = int(total_amount * 100)     # Razorpay accepts paisa
+
+    client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY, settings.RAZORPAY_API_SECRET ))
+
+    # Create Razorpay Order
+    order = client.order.create({
+        "amount": amount_in_paisa,
+        "currency": "INR",
+        "payment_capture": 1
+    })
+
+    return JsonResponse({
+        "order_id": order["id"],
+        "amount": amount_in_paisa,
+        "key": 'rzp_test_Re3mSnvORrkpiR',
+        "name": "Your Store",
+        "email": request.user.email,
+    })

@@ -17,5 +17,7 @@ urlpatterns = [
     path('blog/',blog,name='blog'),
     path('blog-details/',blog_details,name='blog_details'),
     path('cart/', cart,name='cart' ),
-    path('custompage/',custompage,name='custompage')
+    path('custompage/',custompage,name='custompage'),
+    path('payment/', create_order, name='create_order'),
+    # path('payment/success/', payment_success_view, name='payment_success'),
 ]

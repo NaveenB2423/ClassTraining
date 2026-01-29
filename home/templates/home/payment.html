@@ -1,0 +1,19 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<form action="{% url 'payment_success' %}" method="POST">
+   <input type="hidden" name="order_id" value="{{ order_id }}">
+   <script>
+       var options = {
+           "key": "{{ api_key }}",
+           "amount": "{{ amount }}",
+           "currency": "INR",
+           "name": "Your Company",
+           "description": "Payment Description",
+           "order_id": "{{ order_id }}",
+           "handler": function(response) {
+               document.forms[0].submit();
+           }
+       };
+       var rzp = new Razorpay(options);
+       rzp.open();
+   </script>
+</form>
